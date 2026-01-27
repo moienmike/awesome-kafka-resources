@@ -102,11 +102,6 @@ Items with :green_heart: indicate open source projects.
   ![Forks](https://img.shields.io/github/forks/confluentinc/terraform-provider-confluent?style=social)
   - Provision Confluent Cloud stuff with Terraform.
 
-- :green_heart:[Ansible Collection: Kafka](https://github.com/ansible-collections/community.kafka)
-  ![Stars](https://img.shields.io/github/stars/ansible-collections/community.kafka?style=social)
-  ![Forks](https://img.shields.io/github/forks/ansible-collections/community.kafka?style=social)
-  - Kafka automation via Ansible modules.
-
 - :green_heart:[Kafka Docker Images (Bitnami)](https://github.com/bitnami/containers/tree/main/bitnami/kafka)
   ![Stars](https://img.shields.io/github/stars/bitnami/containers?style=social)
   ![Forks](https://img.shields.io/github/forks/bitnami/containers?style=social)
@@ -406,11 +401,6 @@ Items with :green_heart: indicate open source projects.
   ![Forks](https://img.shields.io/github/forks/confluentinc/kafka-connect-jdbc?style=social)
   - Still the default JDBC connector in a lot of places.
 
-- :green_heart:[Confluent Hub Client](https://github.com/confluentinc/confluent-hub-client)
-  ![Stars](https://img.shields.io/github/stars/confluentinc/confluent-hub-client?style=social)
-  ![Forks](https://img.shields.io/github/forks/confluentinc/confluent-hub-client?style=social)
-  - Install connectors from Confluent Hub.
-
 ### Data Processing and Machine Learning
 
 - :green_heart:[Spark Structured Streaming (Kafka integration)](https://github.com/apache/spark)
@@ -466,7 +456,7 @@ Items with :green_heart: indicate open source projects.
 - [Confluent Blog](https://www.confluent.io/blog/)
 - [Redpanda Blog](https://www.redpanda.com/blog)
 - [Strimzi Blog](https://strimzi.io/blog/)
-- [The Apache Kafka YouTube channel](https://www.youtube.com/@ApacheKafka)
+- [The Apache Kafka YouTube channel](https://www.youtube.com/results?search_query=apache+kafka)
 - [Confluent YouTube channel](https://www.youtube.com/@Confluent)
 
 ### Learnings and Documentations
