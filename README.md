@@ -2,13 +2,6 @@
 
 A curated list of awesome Kafka tools and resources.
 
-## The Fiery Meter of Awesomeness
-
-- Repo with 0050+ Stars: :fire:
-- Repo with 0200+ Stars: :fire::fire:
-- Repo with 0500+ Stars: :fire::fire::fire:
-- Repo with 1000+ Stars: :fire::fire::fire::fire:
-- Repo with 2000+ Stars: :fire::fire::fire::fire::fire:
 
 ## Contents
 
@@ -19,12 +12,11 @@ A curated list of awesome Kafka tools and resources.
   - [Cluster Resources Management](#cluster-resources-management)
   - [Secrets Management](#secrets-management)
   - [Networking](#networking)
-  - [Storage](#storage)
+  - [Storage and KRaft](#storage-and-kraft)
   - [Testing and Troubleshooting](#testing-and-troubleshooting)
   - [Monitoring, Alerts, and Visualization](#monitoring-alerts-and-visualization)
   - [Backup and Restore](#backup-and-restore)
   - [Security and Compliance](#security-and-compliance)
-  - [Service Mesh](#service-mesh)
   - [Development Tools](#development-tools)
   - [Data Processing and Machine Learning](#data-processing-and-machine-learning)
   - [Miscellaneous](#miscellaneous)
@@ -32,6 +24,9 @@ A curated list of awesome Kafka tools and resources.
   - [Guides](#guides)
   - [Blogs and Videos](#blogs-and-videos)
   - [Learnings and Documentations](#learnings-and-documentations)
+- [Anti-Patterns and Common Mistakes](#anti-patterns-and-common-mistakes)
+- [Real-World Patterns and Best Practices](#real-world-patterns-and-best-practices)
+- [Tool Comparison Tables](#tool-comparison-tables)
 - [Contribute](#contribute)
 - [License](#license)
 
@@ -74,6 +69,11 @@ Items with :green_heart: indicate open source projects.
   ![Stars](https://img.shields.io/github/stars/strimzi/strimzi-kafka-operator?style=social)
   ![Forks](https://img.shields.io/github/forks/strimzi/strimzi-kafka-operator?style=social)
   - The go-to Kafka-on-Kubernetes operator for most people.
+
+- :green_heart:[Strimzi Drain Cleaner](https://github.com/strimzi/drain-cleaner)
+  ![Stars](https://img.shields.io/github/stars/strimzi/drain-cleaner?style=social)
+  ![Forks](https://img.shields.io/github/forks/strimzi/drain-cleaner?style=social)
+  - Zero-downtime node draining for Kafka on Kubernetes.
 
 - :green_heart:[Bitnami Kafka Helm Chart](https://github.com/bitnami/charts/tree/main/bitnami/kafka)
   ![Stars](https://img.shields.io/github/stars/bitnami/charts?style=social)
@@ -122,8 +122,7 @@ Items with :green_heart: indicate open source projects.
 - :green_heart:[CMAK (Cluster Manager for Apache Kafka)](https://github.com/yahoo/CMAK)
   ![Stars](https://img.shields.io/github/stars/yahoo/CMAK?style=social)
   ![Forks](https://img.shields.io/github/forks/yahoo/CMAK?style=social)
-  :fire::fire::fire::fire::fire:
-  - Old but still everywhere. UI for brokers/topics/partitions. :contentReference[oaicite:1]{index=1}
+  - Old but still everywhere. UI for brokers/topics/partitions. ⚠️ Maintenance has slowed. :contentReference[oaicite:1]{index=1}
 
 - :green_heart:[Kafka UI](https://github.com/provectus/kafka-ui)
   ![Stars](https://img.shields.io/github/stars/provectus/kafka-ui?style=social)
@@ -133,7 +132,6 @@ Items with :green_heart: indicate open source projects.
 - :green_heart:[AKHQ](https://github.com/tchiotludo/akhq)
   ![Stars](https://img.shields.io/github/stars/tchiotludo/akhq?style=social)
   ![Forks](https://img.shields.io/github/forks/tchiotludo/akhq?style=social)
-  :fire::fire::fire::fire::fire:
   - Kafka GUI with good coverage (topics, groups, schema registry, connect). :contentReference[oaicite:2]{index=2}
 
 - :green_heart:[Kafdrop](https://github.com/obsidiandynamics/kafdrop)
@@ -144,11 +142,13 @@ Items with :green_heart: indicate open source projects.
 - :green_heart:[Redpanda Console (Kowl)](https://github.com/redpanda-data/console)
   ![Stars](https://img.shields.io/github/stars/redpanda-data/console?style=social)
   ![Forks](https://img.shields.io/github/forks/redpanda-data/console?style=social)
-  :fire::fire::fire::fire::fire:
-  - One of the best OSS web consoles right now (Kafka-compatible). :contentReference[oaicite:3]{index=3}
+  - One of the best OSS web consoles right now (Kafka-compatible).
 
 - :green_heart:[Confluent Control Center (docs)](https://docs.confluent.io/platform/current/control-center/index.html)
   - Not OSS, but widely used in Confluent shops.
+
+- [Kpow](https://kpow.io/)
+  - Commercial UI/operations tool, popular in enterprise environments.
 
 ### Secrets Management
 
@@ -172,7 +172,6 @@ Items with :green_heart: indicate open source projects.
 - :green_heart:[Kafka Proxy](https://github.com/grepplabs/kafka-proxy)
   ![Stars](https://img.shields.io/github/stars/grepplabs/kafka-proxy?style=social)
   ![Forks](https://img.shields.io/github/forks/grepplabs/kafka-proxy?style=social)
-  :fire::fire::fire:
   - Proxy Kafka connections via SOCKS/HTTP, k8s-friendly. :contentReference[oaicite:4]{index=4}
 
 - :green_heart:[Strimzi Kafka Bridge](https://github.com/strimzi/strimzi-kafka-bridge)
@@ -185,12 +184,21 @@ Items with :green_heart: indicate open source projects.
   ![Forks](https://img.shields.io/github/forks/confluentinc/kafka-rest?style=social)
   - REST Proxy for Kafka (still used, especially with Confluent platform).
 
-### Storage
+### Storage and KRaft
+
+#### KRaft (ZooKeeper-less Kafka)
+
+- :green_heart:[KRaft Mode (official)](https://kafka.apache.org/documentation/#kraft)
+  - Kafka without ZooKeeper. Production-ready since 3.3.1, default in 4.0+.
+  - Simpler operations, faster metadata propagation, better scalability.
+  - Migration guide: [KRaft Migration](https://kafka.apache.org/documentation/#kraft_zk_migration)
+
+#### Tiered Storage and Alternatives
 
 - :green_heart:[Kafka Tiered Storage (official)](https://github.com/apache/kafka)
   ![Stars](https://img.shields.io/github/stars/apache/kafka?style=social)
   ![Forks](https://img.shields.io/github/forks/apache/kafka?style=social)
-  - Tiered storage is now a real topic; start from upstream.
+  - Offload older segments to object storage (S3, Azure Blob, GCS).
 
 - :green_heart:[MinIO](https://github.com/minio/minio)
   ![Stars](https://img.shields.io/github/stars/minio/minio?style=social)
@@ -229,19 +237,32 @@ Items with :green_heart: indicate open source projects.
 - :green_heart:[kafka_exporter (Prometheus)](https://github.com/danielqsj/kafka_exporter)
   ![Stars](https://img.shields.io/github/stars/danielqsj/kafka_exporter?style=social)
   ![Forks](https://img.shields.io/github/forks/danielqsj/kafka_exporter?style=social)
-  :fire::fire::fire::fire::fire:
   - Most common Prometheus exporter for Kafka. :contentReference[oaicite:5]{index=5}
 
 - :green_heart:[JMX Exporter](https://github.com/prometheus/jmx_exporter)
   ![Stars](https://img.shields.io/github/stars/prometheus/jmx_exporter?style=social)
   ![Forks](https://img.shields.io/github/forks/prometheus/jmx_exporter?style=social)
-  :fire::fire::fire::fire:
   - Standard route for JVM metrics (brokers, connect workers, streams apps).
 
 - :green_heart:[Burrow](https://github.com/linkedin/Burrow)
   ![Stars](https://img.shields.io/github/stars/linkedin/Burrow?style=social)
   ![Forks](https://img.shields.io/github/forks/linkedin/Burrow?style=social)
   - Consumer lag checking (classic).
+
+- :green_heart:[kafka-lag-exporter](https://github.com/lightbend/kafka-lag-exporter)
+  ![Stars](https://img.shields.io/github/stars/lightbend/kafka-lag-exporter?style=social)
+  ![Forks](https://img.shields.io/github/forks/lightbend/kafka-lag-exporter?style=social)
+  - Prometheus-native lag monitoring (lightweight alternative to Burrow).
+
+- :green_heart:[Kafka Minion](https://github.com/cloudhut/kminion)
+  ![Stars](https://img.shields.io/github/stars/cloudhut/kminion?style=social)
+  ![Forks](https://img.shields.io/github/forks/cloudhut/kminion?style=social)
+  - Prometheus exporter with detailed consumer group metrics.
+
+- :green_heart:[Xinfra Monitor (LinkedIn)](https://github.com/linkedin/kafka-monitor)
+  ![Stars](https://img.shields.io/github/stars/linkedin/kafka-monitor?style=social)
+  ![Forks](https://img.shields.io/github/forks/linkedin/kafka-monitor?style=social)
+  - End-to-end cluster monitoring and availability testing.
 
 - :green_heart:[Grafana](https://github.com/grafana/grafana)
   ![Stars](https://img.shields.io/github/stars/grafana/grafana?style=social)
@@ -290,18 +311,6 @@ Items with :green_heart: indicate open source projects.
   ![Forks](https://img.shields.io/github/forks/cert-manager/cert-manager?style=social)
   - TLS for brokers / connect / schema registry in k8s.
 
-### Service Mesh
-
-- :green_heart:[Istio](https://github.com/istio/istio)
-  ![Stars](https://img.shields.io/github/stars/istio/istio?style=social)
-  ![Forks](https://img.shields.io/github/forks/istio/istio?style=social)
-  - Mostly for app traffic, but shows up around Kafka-adjacent services.
-
-- :green_heart:[Linkerd](https://github.com/linkerd/linkerd2)
-  ![Stars](https://img.shields.io/github/stars/linkerd/linkerd2?style=social)
-  ![Forks](https://img.shields.io/github/forks/linkerd/linkerd2?style=social)
-  - Lighter mesh option; common in platform setups.
-
 ### Development Tools
 
 #### Core clients (widely used)
@@ -309,13 +318,11 @@ Items with :green_heart: indicate open source projects.
 - :green_heart:[librdkafka](https://github.com/confluentinc/librdkafka)
   ![Stars](https://img.shields.io/github/stars/confluentinc/librdkafka?style=social)
   ![Forks](https://img.shields.io/github/forks/confluentinc/librdkafka?style=social)
-  :fire::fire::fire:
   - The C/C++ client that powers a lot of bindings. :contentReference[oaicite:6]{index=6}
 
 - :green_heart:[confluent-kafka-go](https://github.com/confluentinc/confluent-kafka-go)
   ![Stars](https://img.shields.io/github/stars/confluentinc/confluent-kafka-go?style=social)
   ![Forks](https://img.shields.io/github/forks/confluentinc/confluent-kafka-go?style=social)
-  :fire::fire::fire::fire::fire:
   - Go client (librdkafka wrapper). :contentReference[oaicite:7]{index=7}
 
 - :green_heart:[Sarama (Go)](https://github.com/IBM/sarama)
@@ -370,13 +377,17 @@ Items with :green_heart: indicate open source projects.
 - :green_heart:[Schema Registry (Confluent)](https://github.com/confluentinc/schema-registry)
   ![Stars](https://img.shields.io/github/stars/confluentinc/schema-registry?style=social)
   ![Forks](https://img.shields.io/github/forks/confluentinc/schema-registry?style=social)
-  :fire::fire::fire::fire::fire:
   - Avro/JSON Schema/Protobuf registry. :contentReference[oaicite:9]{index=9}
 
 - :green_heart:[Apicurio Registry](https://github.com/Apicurio/apicurio-registry)
   ![Stars](https://img.shields.io/github/stars/Apicurio/apicurio-registry?style=social)
   ![Forks](https://img.shields.io/github/forks/Apicurio/apicurio-registry?style=social)
   - Another solid schema/API registry option.
+
+- :green_heart:[Karapace (Aiven)](https://github.com/aiven/karapace)
+  ![Stars](https://img.shields.io/github/stars/aiven/karapace?style=social)
+  ![Forks](https://img.shields.io/github/forks/aiven/karapace?style=social)
+  - Open source schema registry and REST proxy alternative.
 
 #### Kafka Connect / integrations
 
@@ -412,6 +423,16 @@ Items with :green_heart: indicate open source projects.
   ![Forks](https://img.shields.io/github/forks/apache/flink?style=social)
   - Kafka connectors everywhere in Flink deployments.
 
+- :green_heart:[Benthos](https://github.com/benthosdev/benthos)
+  ![Stars](https://img.shields.io/github/stars/benthosdev/benthos?style=social)
+  ![Forks](https://img.shields.io/github/forks/benthosdev/benthos?style=social)
+  - Stream processing with native Kafka input/output connectors.
+
+- :green_heart:[Vector](https://github.com/vectordotdev/vector)
+  ![Stars](https://img.shields.io/github/stars/vectordotdev/vector?style=social)
+  ![Forks](https://img.shields.io/github/forks/vectordotdev/vector?style=social)
+  - Observability pipeline with Kafka source/sink support.
+
 - :green_heart:[dbt (often paired with Kafka pipelines)](https://github.com/dbt-labs/dbt-core)
   ![Stars](https://img.shields.io/github/stars/dbt-labs/dbt-core?style=social)
   ![Forks](https://img.shields.io/github/forks/dbt-labs/dbt-core?style=social)
@@ -422,12 +443,7 @@ Items with :green_heart: indicate open source projects.
 - :green_heart:[awesome-kafka (existing list)](https://github.com/semantalytics/awesome-kafka)
   ![Stars](https://img.shields.io/github/stars/semantalytics/awesome-kafka?style=social)
   ![Forks](https://img.shields.io/github/forks/semantalytics/awesome-kafka?style=social)
-  - Another curated list (good for cross-checking ideas).  
-
-- :green_heart:[Cruise Control](https://github.com/linkedin/cruise-control)
-  ![Stars](https://img.shields.io/github/stars/linkedin/cruise-control?style=social)
-  ![Forks](https://img.shields.io/github/forks/linkedin/cruise-control?style=social)
-  - Auto-rebalancing and capacity goals.
+  - Another curated list (good for cross-checking ideas).
 
 - :green_heart:[Confluent Examples](https://github.com/confluentinc/examples)
   ![Stars](https://img.shields.io/github/stars/confluentinc/examples?style=social)
@@ -459,6 +475,140 @@ Items with :green_heart: indicate open source projects.
 - [Kafka Internals (community notes)](https://cwiki.apache.org/confluence/display/KAFKA/Index)
 - [Schema Registry docs](https://docs.confluent.io/platform/current/schema-registry/index.html)
 - [Kafka Connect docs](https://kafka.apache.org/documentation/#connect)
+
+---
+
+## Anti-Patterns and Common Mistakes
+
+### Architecture Anti-Patterns
+
+- **Using Kafka as a database**: Kafka is a log, not a database. No random access, no updates, no deletes (only compaction).
+- **Single large topic instead of multiple**: Splits by domain make scaling, security, and retention easier.
+- **No partitioning strategy**: Random partitioning kills ordering guarantees. Use key-based partitioning.
+- **Ignoring replication factor**: `replication.factor=1` means data loss on broker failure. Use 3+ in production.
+- **Over-partitioning**: 1000+ partitions per broker increases latency and recovery time.
+- **Under-partitioning**: Can't scale consumers beyond partition count. Plan for growth.
+
+### Operations Anti-Patterns
+
+- **Running without monitoring**: No lag alerts = invisible consumer failures.
+- **Skipping schema registry**: Schema evolution without registry = runtime errors in production.
+- **No retention policy**: Infinite retention = disk full. Set `retention.ms` or `retention.bytes`.
+- **Manual consumer offset management**: Let Kafka handle it unless you have a specific reason.
+- **Ignoring ISR (In-Sync Replicas)**: `min.insync.replicas=1` defeats the purpose of replication.
+
+### Development Anti-Patterns
+
+- **Producing synchronously in loops**: Kills throughput. Batch and use async sends.
+- **No idempotency**: Network retries without `enable.idempotence=true` = duplicate messages.
+- **Blocking consumer poll loop**: Long processing = session timeouts. Use separate worker threads.
+- **Catching and logging exceptions**: Consumer stops consuming but doesn't fail. Fail fast or handle properly.
+- **Not handling rebalances**: Leads to duplicate processing or data loss.
+
+### When NOT to Use Kafka
+
+- **Low-latency RPC**: Use gRPC, HTTP/2, or message queues (RabbitMQ, SQS).
+- **Request-reply patterns**: Kafka isn't built for this. Use traditional queues.
+- **Small-scale systems (< 100 msg/sec)**: Overhead not worth it. Use managed queues.
+- **Strong transactional consistency across services**: Kafka gives you at-least-once or exactly-once within Kafka, not distributed transactions.
+- **Simple pub/sub with no replay needs**: Redis Pub/Sub or NATS might be simpler.
+
+---
+
+## Real-World Patterns and Best Practices
+
+### Multi-Region Disaster Recovery
+
+- **Active-Passive**: Use MirrorMaker 2 for continuous replication. Failover = consumer switch to DR cluster.
+- **Active-Active**: Aggregate topics with different prefixes per region. Watch out for circular replication.
+- **Stretched clusters**: Not recommended (latency, split-brain risks). Use replication instead.
+
+### Zero-Downtime Rolling Upgrades
+
+1. Upgrade brokers one at a time (rolling restart).
+2. Upgrade clients (consumers first, then producers).
+3. Use feature flags to toggle new protocol features.
+4. Monitor ISR and lag during upgrades.
+5. Leverage Strimzi Drain Cleaner on k8s to drain pods gracefully.
+
+### Schema Evolution Best Practices
+
+- **Backward compatibility**: New consumers read old data (add optional fields, not remove).
+- **Forward compatibility**: Old consumers read new data (use defaults).
+- **Full compatibility**: Both directions (safest for production).
+- Use Schema Registry with `BACKWARD` or `FULL` compatibility mode.
+- Version schemas explicitly in CI/CD.
+
+### Partition Sizing Guidelines
+
+- **General rule**: 1-3 partitions per consumer in your peak consumer group.
+- **Max partitions per broker**: 4000 (above this, recovery time and metadata overhead grows).
+- **Partition size**: Keep under 10GB per partition for fast recovery.
+- **Key distribution**: Ensure even key distribution to avoid hot partitions.
+
+### Consumer Group Scaling Patterns
+
+- **Horizontal scaling**: Add more consumers (up to partition count).
+- **Vertical scaling**: Increase consumer throughput (batching, parallel processing).
+- **Static membership**: Use `group.instance.id` to avoid rebalances on restarts.
+- **Incremental rebalancing**: Use `partition.assignment.strategy=CooperativeSticky`.
+
+### Transactional Producer Patterns
+
+- **Exactly-once semantics**: Enable `enable.idempotence=true` + `transactional.id`.
+- **Atomic multi-partition writes**: Use transactions to write to multiple topics atomically.
+- **Consumer isolation**: Set `isolation.level=read_committed` on consumers.
+- **Zombie fencing**: Kafka fences out old producers with same `transactional.id`.
+
+### Cloud-Native Kafka on Kubernetes
+
+- **Pod Disruption Budgets**: Set `maxUnavailable=1` to prevent mass evictions.
+- **Node Affinity**: Spread brokers across availability zones.
+- **Storage Classes**: Use SSD-backed storage with `WaitForFirstConsumer` binding.
+- **Resource Limits**: Set memory limits to avoid OOMKills. Use JVM heap = 50-60% of container memory.
+- **Liveness vs Readiness**: Readiness should check Kafka health, not just process alive.
+
+### Cost Optimization
+
+- **Tiered storage**: Move cold data to S3 to reduce broker storage costs.
+- **Spot instances**: Use for non-critical brokers (not recommended for production).
+- **Right-sizing brokers**: Monitor CPU/disk/network, scale down over-provisioned clusters.
+- **Compression**: Enable `compression.type=snappy` or `zstd` to reduce storage and network.
+- **Retention tuning**: Shorter retention = less storage. Align with business needs.
+
+---
+
+## Tool Comparison Tables
+
+### Web UIs for Kafka
+
+| Tool | License | Best For | Pros | Cons |
+|------|---------|----------|------|------|
+| **Redpanda Console** | OSS | Modern teams | Best UI/UX, feature-rich | Redpanda branding |
+| **AKHQ** | OSS | Full-featured | Schema registry + Connect | Java-based (heavier) |
+| **Kafka UI** | OSS | Lightweight | Fast, modern | Fewer integrations |
+| **Kafdrop** | OSS | Simple browsing | Very lightweight | Basic features only |
+| **CMAK** | OSS | Legacy systems | Battle-tested | Slow maintenance |
+| **Kpow** | Commercial | Enterprise | Production-ready support | Paid |
+| **Control Center** | Commercial | Confluent shops | Deep integration | Expensive |
+
+### Kafka Clients (Go)
+
+| Client | Type | Best For | Pros | Cons |
+|--------|------|----------|------|------|
+| **confluent-kafka-go** | CGO (librdkafka) | Performance | Mature, fast | CGO dependencies |
+| **Sarama** | Pure Go | Enterprise | Feature-complete | Complex API |
+| **kafka-go** | Pure Go | Simplicity | No CGO, clean API | Less battle-tested |
+| **franz-go** | Pure Go | Protocol coverage | Modern, fast | Smaller community |
+
+### Prometheus Exporters
+
+| Exporter | Best For | Metrics Coverage | Resource Usage |
+|----------|----------|------------------|----------------|
+| **kafka_exporter** | Consumer lag + topics | High | Low |
+| **JMX Exporter** | Broker JVM metrics | Very High | Medium |
+| **Kafka Minion** | Consumer groups | High | Low |
+| **kafka-lag-exporter** | Lag-focused | Medium | Very Low |
 
 ---
 
